@@ -1,0 +1,80 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {="myFriends"|l}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <a href="#friends" data-tab="friends" class="tab-link">{="myFriends"|l}</a>
+        <hr/>
+        <a href="#followers" data-tab="followers" class="tab-link">{="myFollowers"|l}</a>
+        <hr/>
+        <a href="#subs" data-tab="subs" class="tab-link">{="subs"|l}</a>
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container">
+        <section class="tab" data-name="friends">
+            <h2 class="normal-heading no-margin">{="friends"|l}</h1>
+            {if sizeof(iterator_to_array($user->friends)) > 0}
+            <section n:foreach="$user->friends as $friend" class="openvk-friend-card flex">
+                <img class="openvk-ava-md" src="/{$friend->avatar->getAttributes()['filename_min']}"
+                    alt ="{='photo'|l} {$friend->getAttributes()['first_name']}" />
+                <section>
+                    <a href="/id{$friend->getAttributes()['id']}">
+                        <h4 class="no-margin">{$friend->getAttributes()['first_name']|truncate:17} {$friend->getAttributes()['last_name']|truncate:17}</h4>
+                        <p class="no-margin">{$friend->getAttributes()['status']|truncate:17}</p>
+                    </a>
+                </section>
+            </section>
+            {else}
+                <section class="flex">
+                    <img src="/assets/images/nofr.png" alt="{='emptyBench'|l}" />
+                    <p>{="noFriends"|l}</p>
+                </section>
+            {/if}
+        </section>
+        <section class="tab" data-name="followers">
+            <h2 class="normal-heading no-margin">{="followers"|l}</h1>
+            {if sizeof(iterator_to_array($user->followers)) > 0}
+            <section n:foreach="$user->followers as $follower" class="openvk-friend-card flex">
+                <img class="openvk-ava-md" src="/{$follower->avatar->getAttributes()['filename_min']}"
+                    alt ="{='photo'|l} {$follower->getAttributes()['first_name']}" />
+                <section>
+                    <a href="/id{$follower->getAttributes()['id']}">
+                        <h4 class="no-margin">{$follower->getAttributes()['first_name']|truncate:17} {$follower->getAttributes()['last_name']|truncate:17}</h4>
+                        <p class="no-margin">{$follower->getAttributes()['status']|truncate:30}</p>
+                    </a>
+                </section>
+            </section>
+            {else}
+                <section class="flex">
+                    <img src="/assets/images/nofr.png" alt="{='emptyBench'|l}" />
+                    <p>{="noFollowers"|l}</p>
+                </section>
+            {/if}
+        </section>
+        <section class="tab" data-name="subs">
+            <h2 class="normal-heading no-margin">{="subs"|l}</h1>
+            {if sizeof(iterator_to_array($user->following)) > 0}
+            <section n:foreach="$user->following as $u" class="openvk-friend-card flex">
+                <img class="openvk-ava-md" src="/{$u->avatar->getAttributes()['filename_min']}"
+                    alt ="{='photo'|l} {$u->getAttributes()['first_name']}" />
+                <section>
+                    <a href="/id{$u->getAttributes()['id']}">
+                        <h4 class="no-margin">{$u->getAttributes()['first_name']|truncate:17} {$u->getAttributes()['last_name']|truncate:17}</h4>
+                        <p class="no-margin">{$u->getAttributes()['status']|truncate:30}</p>
+                    </a>
+                </section>
+            </section>
+            {else}
+                <section class="flex">
+                    <img src="/assets/images/nofr.png" alt="{='emptyBench'|l}" />
+                    <p>{="noSubs"|l}</p>
+                </section>
+            {/if}
+        </section>
+    </section>
+{/block}

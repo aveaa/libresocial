@@ -1,0 +1,34 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {="myGroups"|l}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <a href="/gedit?act=new" class="openvk-button">{="createGroup"|l}</a>
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container">
+        <h2 class="normal-heading no-margin">{="groups"|l}</h1>
+        {if sizeof(iterator_to_array($user->groups)) > 0}
+            <section n:foreach="$user->groups as $group" class="openvk-group-card flex">
+                <img class="openvk-ava-md" src="/{$group->avatar->getAttributes()['filename_min']}"
+                    alt ="{='photo'|l} {$group->getAttributes()['name']}" />
+                <section>
+                    <a href="/public{abs($group->getAttributes()['id'])}">
+                        <h4 class="no-margin">{$group->getAttributes()['name']|truncate:17}</h4>
+                        <p class="no-margin">{$group->getAttributes()['status']|truncate:30}</p>
+                    </a>
+                </section>
+            </section>
+        {else}
+            <section class="flex">
+                <img src="/assets/images/nofr.png" alt="{='emptyBench'|l}" />
+                <p>{="noGroups"|l}</p>
+            </section>
+        {/if}
+    </section>
+{/block}

@@ -1,0 +1,25 @@
+<section class="container flex-row">
+   {ifset $logged_user}
+        <a href="/id0" class="col-1">
+            <img src="/{Unionity\OpenVK4\Middlewares\Auth::getUser(true)->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-mini" />
+        </a>
+        <form action="/feed" method="POST" class="openvk-post-form flex-column col-9">
+            <section class="flex-row">
+                <input type="hidden" name="wall" value="{ifset $user}{$user['id']}{else}{abs($club['id'])*-1}{/ifset}" />
+                <textarea class="openvk-post-field col-1" name="post" placeholder="{='anyToughts'|l} {$logged_user['first_name']}?"></textarea>
+                <button class="openvk-button">
+                    <i class="fas fa-pen-fancy"></i>
+                </button>
+            </section>
+            <section n:if="isset($club) && ($club['owner'] === $logged_user['id'] || in_array($logged_user['id'], json_decode($club['coadmins'])))">
+                <hr/>
+                <input type="checkbox" name="as_club" checked /> <label>{='asGroup'|l}</label>
+            </section>
+        </form>
+    {else}
+        <p class="gray-text center">
+            {='loginPromptFeed'|l} <strong>{$is_club ? $club['name'] : $user['first_name']}</strong>.
+        </p>
+    {/ifset}
+</section>
+{include "feed.latte", posts => $posts}

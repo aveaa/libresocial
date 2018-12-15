@@ -1,0 +1,39 @@
+{if !isset($GLOBALS["particleRequested"])}
+<!DOCTYPE html>
+<html>
+  <head>
+    {/if}
+    <title>{block title}Libresocial{/block}</title>
+    {if !isset($GLOBALS["particleRequested"])}
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" />
+    <link rel="stylesheet" href="/assets/stylesheets/OpenVK.css" />
+    <link rel="stylesheet" href="/assets/stylesheets/mobile.css" />
+  </head>
+  <body>
+    <header class="flex-row">
+        <section class="logo">
+            <a href="/">
+                <h1>{$website_name}</h1>
+            </a>
+        </section>
+        <form method="POST" action="/search">
+            <input id="search" name="query" type="text" placeholder="Поиск" />
+        </form>
+    </header>
+    <section id="to_top">
+        <a href="#top"><strong>Наверх ^</strong></a>
+    </section>
+    <main class="flex-row">
+        <a name="top"></a>
+        {/if}
+        {block body}{/block}
+        {if !isset($GLOBALS["particleRequested"])}
+    </main>
+    <script src="/assets/javascripts/konami-js/konami.js"></script>
+    <script src="/assets/javascripts/zepto/zepto.min.js"></script>
+    <script src="/assets/javascripts/common.js"></script>
+    {block js}{/block}
+  </body>
+</html>
+{/if}

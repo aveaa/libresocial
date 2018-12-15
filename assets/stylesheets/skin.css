@@ -1,0 +1,27 @@
+:root {
+    --lsc-bg: #222222;
+    --lsc-main-color: #333336;
+    --lsc-color-lighter: #464646;
+    --lsc-color-darker: #242424;
+    --lsc-color-shadow: #333;
+    --lsc-color-disabled: #3b3c3b;
+    --lsc-separator-color: #2b2b2b;
+    --lsc-text: #e7e7e7;
+    --lsc-special-text: #b2b2b3;
+    --lsc-gray-text: var(--lsc-special-text);
+    --lsc-gray-text-darker: #79797a;
+    --lsc-x-margin: 200px;
+}
+
+.container {
+    background-color: #292929;
+}
+
+.openvk-post-field, .openvk-input-large {
+    background-color: var(--lsc-bg);
+    color: var(--lsc-text);
+}
+
+nav a:hover {
+    background-color: #333336!important;
+}

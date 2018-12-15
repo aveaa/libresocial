@@ -1,0 +1,60 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {$club->getAttributes()['name']}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <img class="openvk-ava" src="/{$club->avatar->getAttributes()['filename']}" alt="{='clubPhoto'|l} {$club->getAttributes()['name']}" />
+        <hr/>
+        <section class="center flex-column">
+        {ifset $logged_user}
+            {if $logged_user["id"] == $club->getAttributes()["owner"]}
+                <a href="/gedit?id={abs($club->getAttributes()['id'])}" class="openvk-button">{="groupSettings"|l}</a>
+            {elseif in_array($logged_user["id"], $club->rawfollowers)}
+                <a href="/unsub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post">{="unsub"|l}</a>
+            {else}
+                <a href="/sub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post">{="join"|l}</a>
+            {/if}
+        {else}
+            <p class="gray-text">
+                {="loginPromptGroup"|l} <strong>{$club->getAttributes()['name']|truncate:17}</strong>.
+            </p>
+        {/ifset}
+        </section>
+    </section>
+    <section class="container">
+        <h3 class="no-margin normal-heading">{="members"|l}</h3>
+        {foreach $club->followers as $follower}
+            <section class="openvk-friend flex-column center">
+                <img class="openvk-ava-mini" src="/{$follower->avatar->getAttributes()['filename_min']}"
+                    alt="{='photo'|l} {$follower->getAttributes()['first_name']}" />
+                <a href="/id{$follower->getAttributes()['id']}">
+                    <strong>{$follower->getAttributes()['first_name']|truncate:17} {$follower->getAttributes()['last_name']|truncate:17}</strong>
+                </a>
+            </section>
+        {/foreach}
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container">
+        <h2 class="no-margin normal-heading">
+          {$club->getAttributes()['name']}
+        </h2>
+    </section>
+    <section class="container">
+        <table class="openvk-userinfo">
+          <tr>
+            <td><em class="openvk-info-key">{="status"|l}:&nbsp;&nbsp;&nbsp;</em></td>
+            <td>{$club->getAttributes()['status']|truncate:32}</td>
+          </tr>
+          <tr>
+            <td><em class="openvk-info-key">{="aboutGroup"|l}:&nbsp;&nbsp;&nbsp;</em></td>
+            <td>{$club->getAttributes()['info']|truncate:32}</td>
+          </tr>
+        </table>
+    </section>
+    {include "wall.latte", is_club => true, posts => $posts}
+{/block}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{$website_name} | {$error['code']}</title>
+    <link rel="stylesheet" href="assets/stylesheets/OpenVK.css" />
+    <style>
+        body {
+            position: relative;
+            height: 100vh;
+            background-color: var(--lsc-main-color);
+            color: #fff;
+        }
+        
+        body > section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        body > section > h1, body > section > h2 {
+            border: none;
+            margin: 15px;
+        }
+        
+        body > section > h1 {
+            font-size: 12rem;
+        }
+        
+        body > section > h2 {
+            font-size: 8rem;
+        }
+        </style>
+        </style>
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>{$error['code']}</h1>
+      <h2>{$error['desc']}</h2>
+      {ifset $error['details']}
+          <!--
+              LibreSocial Error Report
+              ########################
+              
+              {$error['details']}
+              
+              ########################
+          -->
+      {/ifset}
+    </section>
+  </body>
+</html>

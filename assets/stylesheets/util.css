@@ -1,0 +1,52 @@
+.hide {
+    display:none!important;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.normal-heading {
+    border: none;
+}
+
+h1.normal-heading {font-size:2rem;}
+h2.normal-heading {font-size:1.5rem;}
+h3.normal-heading {font-size:1.25rem;}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row-rv {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.flex-column-rv {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.center {text-align:center;}
+
+.col-1 {flex:1;}
+.col-2 {flex:2;}
+.col-3 {flex:3;}
+.col-4 {flex:4;}
+.col-5 {flex:5;}
+.col-6 {flex:6;}
+.col-7 {flex:7;}
+.col-8 {flex:8;}
+.col-9 {flex:9;}
+.col-10 {flex:10;}

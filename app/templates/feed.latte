@@ -1,0 +1,88 @@
+<!-- Feed begin -->
+
+<section n:foreach="$posts as $post" class="openvk-post container flex-column">
+    <section class="openvk-post--author flex-row">
+        <img
+            class="openvk-ava-mini"
+            src="/{$post->author->avatar->getAttributes()['filename_min']}"
+            alt="{='authorPhoto'|l}" />
+        <section class="openvk-post--info flex-column">
+            <h4>
+                <a n:if="isset($post->author->getAttributes()['first_name'])" href="/id{$post->author->getAttributes()['id']}">
+                    {$post->author->getAttributes()['first_name']|truncate:17} {$post->author->getAttributes()['last_name']|truncate:17}
+                </a>
+                <a n:if="isset($post->author->getAttributes()['name'])" href="/public{abs($post->author->getAttributes()['id'])}">
+                    {$post->author->getAttributes()['name']|truncate:17}
+                </a>
+            </h4>
+            <sup style="color:darkgray;">{$post->getAttributes()['edited'] ?? $post->getAttributes()['date']} 
+            <acronym n:if="!is_null($post->getAttributes()['edited'])" title="{='edited'|l}">*</acronym></sup>
+        </section>
+    </section>
+    <article class="openvk-post--content">
+        {$post->getAttributes()['content']|noescape}
+    </article>
+    {ifset $logged_user}
+        <section data-i-pid="{$post->id}" class="openvk-post--menu flex-row">
+            <section class="openvk-post--likes {in_array($logged_user['id'], json_decode($post->liked_by)) ? 'liked':''}">
+                <i class="fa{in_array($logged_user['id'], json_decode($post->liked_by)) ? 's':'r'} fa-heart"></i>
+                <span>{sizeof(json_decode($post->liked_by))}</span>
+            </section>
+            <section class="openvk-post--actions">
+                {if $post->isOwner($logged_user['id'])}
+                    <a href="#post:edit" class="openvk-post--edit"><i class="fas fa-pen-alt"></i> {="edit"|l}</a>&nbsp;&nbsp;
+                    <a href="#post:delete" style="color: #e0262c;" class="openvk-post--rm"><i class="fas fa-trash-alt"></i> {="delete"|l}</a>&nbsp;&nbsp;
+                {/if}
+                <a href="#comment:write" class="openvk-post--wcomm">{="writeComment"|l}</a>
+            </section>
+        </section>
+    {/ifset}
+    {ifset $post->comments}
+        <section class="openvk-post--comments">
+            <section class="flex-row openvk-comment-form hide">
+                <a href="/id{$logged_user['id']}" class="col-1">
+                    <img src="/{Unionity\OpenVK4\Middlewares\Auth::getUser(true)->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-nano">
+                </a>
+                <form action="/comments/{$post->id}" method="POST" class="openvk-post-form flex-row col-9">
+                    <textarea class="openvk-post-field col-1" name="post" placeholder="{='writeComment'|l}..."></textarea>
+                    <button class="openvk-button">
+                        <i class="fas fa-pen-fancy"></i>
+                    </button>
+                </form>
+            </section>
+            <section n:foreach="$post->comments->all() as $comment" class="openvk-comment">
+                <section class="openvk-post--author flex-row">
+                    <img
+                        class="openvk-ava-nano"
+                        src="/{$comment->author->avatar->getAttributes()['filename_min']}"
+                        alt="{='commentAuthorPhoto'|l}" />
+                    <section class="openvk-comment--info flex-column">
+                        <h5>
+                            <a href="/id{$comment->author->getAttributes()['id']}">
+                                {$comment->author->getAttributes()['first_name']|truncate:17} {$comment->author->getAttributes()['last_name']|truncate:17}
+                            </a>
+                        </h5>
+                        <sup style="color:darkgray;">{$comment->getAttributes()['edited'] ?? $comment->getAttributes()['date']} 
+                        <acronym n:if="!is_null($comment->getAttributes()['edited'])" title="{='edited'|l}">*</acronym></sup>
+                    </section>
+                </section>
+                <article class="openvk-comment--content">
+                    {=$comment->getAttributes()['content']|noescape}
+                </article>
+                <section data-i-pid="{$comment->id}" class="openvk-post--menu flex-row">
+                    <section class="openvk-comment--likes {in_array($logged_user['id'], json_decode($comment->liked_by)) ? 'liked':''}">
+                        <i class="fa{in_array($logged_user['id'], json_decode($comment->liked_by)) ? 's':'r'} fa-heart"></i>
+                        <span>{sizeof(json_decode($comment->liked_by))}</span>
+                    </section>
+                    <section class="openvk-comment--actions">
+                        {if $comment->isOwner($logged_user['id'])}
+                            <a href="#comment:edit" class="openvk-comment--edit"><i class="fas fa-pen-alt"></i> {="edit"|l}</a>&nbsp;&nbsp;
+                            <a href="#comment:delete" style="color: #e0262c;" class="openvk-comment--rm"><i class="fas fa-trash-alt"></i> {="delete"|l}</a>&nbsp;&nbsp;
+                        {/if}
+                        <a href="#comment:reply" class="openvk-comment--reply">{="reply"|l}</a>
+                    </section>
+                </section>
+            </section>
+        </section>
+    {/ifset}
+</section>

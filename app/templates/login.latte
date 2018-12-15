@@ -1,0 +1,19 @@
+{layout 'only-nav.latte'}
+
+{block content}
+    <section class="container">
+        <center>
+            <h1>{="loginVerb"|l}</h1>
+            <form method="POST" action="/login" class="flex-column">
+                <input class="openvk-input-large" type="text" name="login" placeholder="{='loginNoun'|l}" />
+                <input class="openvk-input-large" type="password" name="pass" placeholder="{='password'|l}" />
+                <div>
+                    <input type="checkbox" name="remember" />
+                    <label> {="rememberMe"|l}</label>
+                </div><br/>
+                <button class="openvk-button">{="loginVerb"|l}</button>
+                <p>Нет аккаунта? <a href="/signup">{="registerVerb"|l}</a>.</p>
+            </form>
+        </center>
+    </section>
+{/block}

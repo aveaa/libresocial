@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !/static
+RewriteCond %{REQUEST_URI} !/assets
+RewriteCond %{REQUEST_URI} !/storage
+RewriteRule ^(.*)$ index.php [PT]
+
+<filesMatch "\.(jpg|jpeg|png|gif)$">
+    ErrorDocument 404 /storage/undefined.jpeg
+</filesMatch>
+
+Options -Indexes

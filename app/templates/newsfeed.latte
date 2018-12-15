@@ -1,0 +1,15 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {="myNews"|l}
+{/block}
+
+{block second-col}
+  {include "wall.latte", user => $logged_user, posts => $posts} 
+{/block}
+
+{block first-col}
+  <section class="container">
+      <label>{="interestingFirst"|l}: </label><input type="checkbox" checked disabled />
+  </section>
+{/block}

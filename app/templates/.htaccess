@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
+
+# При закрытии доступа к сайту не убирайте из разрешенных айпи машины - в противном случае не будет работать визуальный редактор (err500)
+#order deny,allow
+#deny from all
+#allow from 104.248.194.118
+
+ErrorDocument 403 /off.html
+ErrorDocument 500 /off.html

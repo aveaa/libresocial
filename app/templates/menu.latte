@@ -1,0 +1,38 @@
+{layout 'master.latte'}
+
+{block body}
+    <section id="navigation">
+        {ifset $logged_user}
+            <nav class="flex-column">
+                <a href="/id0"><i class="fas fa-home"></i> {="myPage"|l}</a>
+                <a href="/feed"><i class="far fa-newspaper"></i> {="myNews"|l}</a>
+                <a href="/im"><i class="fas fa-comments"></i> {="myMsgs"|l}</a>
+                <a href="/friends"><i class="fas fa-user"></i> {="myFriends"|l}</a>
+                <a href="/groups"><i class="fas fa-users"></i> {="myGroups"|l}</a>
+                <a href="/photos"><i class="fas fa-camera"></i> {="myPhotos"|l}</a>
+                <a href="/videos"><i class="fas fa-video"></i> {="myVideos"|l}</a>
+                <a href="/audios"><i class="fas fa-headphones"></i> {="myAudios"|l}</a>
+                <a href="/docs"><i class="fas fa-compact-disc"></i> {="myDocs"|l}</a>
+                <hr/>
+                <a href="/logout" class="no-ajax"><i class="fas fa-sign-out-alt"></i> {="logout"|l}</a>
+            </nav>
+        {else}
+            <section id="login_please" class="container">
+                <center class="flex-column">
+                    <p class="gray-text">
+                        {="loginPrompt"|l} {$website_name}.<br/>
+                    </p>
+                    <a class="openvk-button" href="/login">{="loginVerb"|l}</a><br/>
+                    <a class="openvk-button" href="/signup">{="register"|l}</a>
+                </center>
+            </section>
+        {/ifset}
+        
+        <footer class="">
+            <p>LibreSoc v0.0.1</p>
+        </footer>
+    </section>
+    <section id="main" class="flex-row">
+        {block main}{/block}
+    </section>
+{/block}

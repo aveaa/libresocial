@@ -1,0 +1,31 @@
+{layout 'only-nav.latte'}
+
+{block content}
+    <section class="container">
+        <center>
+            <h1>{="registerVerb"|l}</h1>
+            <form method="POST" action="/signup" class="flex-column">
+                <input class="openvk-input-large" type="text" name="name[]" placeholder="{='name'|l}" required />
+                <input class="openvk-input-large" type="text" name="name[]" placeholder="{='last_name'|l}" required />
+                <input class="openvk-input-large" type="date" name="bdate" placeholder="{='birthday'|l}" required />
+                <select class="openvk-input-large" name="gender" required >
+                    <option selected disabled>
+                        {='selectGender'|l}
+                    </option>
+                    <option value="female">{='female'|l}</option>
+                    <option value="male">{='male'|l}</option>
+                </select>
+                <hr/>
+                <input class="openvk-input-large" type="phone" name="phone" placeholder="{='phone'|l}" required />
+                <input class="openvk-input-large" type="email" name="email" placeholder="{='email'|l}" required />
+                <hr/>
+                <input class="openvk-input-large" type="text" name="login" placeholder="{='loginNoun'|l}" />
+                <input class="openvk-input-large" type="password" name="pass" placeholder="{='password'|l}" />
+                <input class="openvk-input-large" type="password" name="pass_confirm" placeholder="{='repeatPassword'|l}" />
+                <br/>
+                <button class="openvk-button">{="registerVerb"|l}</button>
+                <p>{='alreadyHaveAccount'|l}т? <a href="/login">{="loginVerb"|l}</a>.</p>
+            </form>
+        </center>
+    </section>
+{/block}

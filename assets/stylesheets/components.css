@@ -1,0 +1,7 @@
+.container {
+    background-color: #fff;
+    padding: 12px;
+    margin: 5px;
+    border-radius: 5px;
+	border: 1px solid var(--lsc-color-shadow);
+}

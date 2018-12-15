@@ -1,0 +1,11 @@
+{
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    
+    "require": {
+        "illuminate/database": "^5.6",
+        "leocavalcante/siler": "dev-master",
+        "latte/latte": "^3.0@dev",
+        "react/datagram": "dev-master"
+    }
+}

@@ -1,0 +1,150 @@
+.openvk-ava {
+    max-width: 245px;
+}
+
+.openvk-info-key {
+    font-style: normal;
+    color: var(--lsc-gray-text);
+}
+
+.openvk-button {
+    color: #fff;
+    padding: 6px;
+    margin: 1pt;
+    background-color: var(--lsc-main-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.openvk-button:hover {
+    background-color: var(--lsc-color-lighter);
+}
+
+.openvk-button:active {
+    background-color: var(--lsc-color-darker);
+}
+
+a.openvk-button, a.openvk-button:hover, a.openvk-button:active {color:#fff;}
+
+.gray-text {color:var(--lsc-special-text);}
+
+.openvk-input-large {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--lsc-color-lighter);
+}
+
+.openvk-ava-md {
+    width: 84px;
+    height: 84px;
+    border-radius: 100%;
+}
+
+.openvk-ava-mini {
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+}
+
+.openvk-ava-nano {
+    width: 42px;
+    height: 42px;
+    border-radius: 100%;
+}
+
+.openvk-post-form {
+    justify-self: normal;
+}
+
+.openvk-post-field {
+    font-size: 1.04rem;
+    font-family: inherit;
+    height: 100%;
+    border: none;
+    resize: none;
+}
+
+.user-head--bot::after, .user-head--sysent::after {
+    font-size: 12px;
+    font-family: monospace;
+    font-style: oblique;
+    text-transform: uppercase;
+    vertical-align: super;
+    background-color: var(--lsc-color-lighter);
+    color: #fff;
+    padding: 2pt;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+.user-head--bot::after {content: "bot";}
+.user-head--sysent::after {content: "sys";}
+
+.openvk-friend {
+    display: inline-block;
+    max-width: 32%;
+}
+
+.openvk-friend > a {
+    font-size: 8pt;
+    font-weight: 900;
+    font-family: sans-serif;
+}
+
+.openvk-post {
+    max-width: 50vw;
+    word-break: break-all;
+}
+
+.openvk-post--info, .openvk-comment--info {
+    padding-left: .4rem;
+}
+
+.openvk-post--info > h4, h5, h6 {
+    margin: 0;
+}
+
+.openvk-comment--info > h4, h5, h6 {
+    margin: 0;
+}
+
+
+.openvk-post--content, .openvk-comment--content {
+    margin-bottom: 20px;
+}
+
+.openvk-post--menu {
+    justify-content: space-between;
+}
+
+.openvk-post--likes, .openvk-comment--likes {
+    user-select: none;
+    cursor: pointer;
+    color: var(--lsc-main-color);
+}
+
+.openvk-post--likes.liked, .openvk-comment--likes.liked {color:deeppink;}
+
+.openvk-post--edit, .openvk-post--rm, .openvk-comment--edit, .openvk-comment--rm {
+    opacity: .2;
+    transition: .1s opacity ease-out;
+}
+
+.openvk-post--edit:hover, .openvk-post--rm:hover, .openvk-comment--edit:hover, .openvk-comment--rm:hover {
+    opacity: 1;
+}
+
+.openvk-post--comments {
+    border-top: 1px solid var(--lsc-color-lighter);
+}
+
+.openvk-comment-form {
+    margin: 2pt;
+}
+
+.openvk-comment {
+    margin: 10px;
+    border-bottom: 1px solid var(--lsc-color-lighter);
+}

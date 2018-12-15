@@ -1,0 +1,24 @@
+@media screen and (max-width: 967px) {
+    header {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    
+    #search {
+        display: none;
+    }
+    
+    main {
+        width: calc(100vw - ( 5% * 2 ));
+    }
+    
+    #navigation {
+        left: unset;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    main {
+        width: unset;
+    }
+}

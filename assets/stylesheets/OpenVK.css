@@ -1,0 +1,139 @@
+@import "util.css";
+@import "components.css";
+@import "ovk-el.css";
+
+@import "skin.css";
+
+a {
+    color: var(--lsc-gray-text-darker);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--lsc-gray-text-darker);
+    text-decoration: underline;
+}
+
+hr {
+    color: var(--lsc-separator-color);
+}
+
+h1, h2, h3 {
+    border-bottom: 1px solid var(--lsc-separator-color);
+}
+
+body {
+    margin: 0;
+    background-color: var(--lsc-bg);
+    color: var(--lsc-text);
+	font-family: 'Segoe UI Light', sans-serif;
+    font-weight: 100;
+    text-rendering: geometricPrecision;
+    scroll-behavior: smooth;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 36px;
+    background-color: var(--lsc-main-color);
+    padding: 3px;
+    padding-left: var(--lsc-x-margin);
+    padding-right: var(--lsc-x-margin);
+    z-index: 999;
+}
+
+.logo {
+    width: 15%;
+}
+
+.logo h1 {
+    margin: 0;
+    color: #fff;
+    border: none;
+}
+
+.logo img {
+    max-height: 35px;
+    vertical-align: middle;
+}
+
+#search {
+    font-size: 13px;
+    width: 220px;
+    background-color: var(--lsc-color-darker);
+    color: #fff;
+    padding: 5px;
+    border: 1px solid var(--lsc-color-lighter);
+    border-radius: 25px;
+    vertical-align: sub;
+}
+
+#search::placeholder {
+    color: var(--lsc-special-text);
+}
+
+#to_top {
+    position: fixed;
+    top: 0;
+    padding-top: 60px;
+    width: 75px;
+    height: 100vh;
+    opacity: 0;
+    cursor: pointer;
+    background-color: var(--lsc-color-lighter);
+    transition: .2s opacity ease-in-out;
+    z-index: 5;
+}
+
+#to_top a {
+    color: #fff;
+}
+
+#to_top:hover {
+    opacity: 1;
+}
+
+main {
+    margin: auto;
+    margin-top: 50px;
+    width: calc(100vw - ( var(--lsc-x-margin) * 2 ));
+}
+
+#navigation {
+    position: sticky;
+    top: 70px;
+    left: var(--lsc-x-margin);
+    width: 16%;
+}
+
+nav a {
+    padding: 3pt;
+    border-radius: 5px;
+    transition: .1s all;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    text-decoration: none;
+}
+
+#main {
+    margin-left: 4%;
+    width: 80%;
+    justify-content: stretch;
+}
+
+#main > section {
+    margin: 5px;
+}
+
+#content {
+    flex: 7;
+    margin-right: 35px;
+}
+
+#right {
+    flex: 2;
+}

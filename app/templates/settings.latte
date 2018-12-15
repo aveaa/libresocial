@@ -1,0 +1,50 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {="settings"|l}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <a href="#basics" data-tab="basics" class="tab-link">{="general"|l}</a>
+        <hr/>
+        <a href="#ava" data-tab="ava" class="tab-link">{="myProfilePhoto"|l}</a>
+        <hr/>
+        <a href="#security" data-tab="security" class="tab-link">{="security"|l}</a>
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container center">
+        <section class="tab" data-name="basics">
+            <form method="POST">
+                <h2>{="general"|l}</h2>
+                <label class="openvk-info-key">{="name"|l}: </label><input class="openvk-input-large" type="text" name="fn" value="{$logged_user['first_name']}" /><br/>
+                <label class="openvk-info-key">{="last_name"|l}: </label><input class="openvk-input-large" type="text" name="ln" value="{$logged_user['last_name']}" /><br/>
+                <label class="openvk-info-key">{="pseudo"|l}: </label><input class="openvk-input-large" type="text" name="pseudo" value="{$logged_user['pseudo']}" />
+                <h2>Информация обо мне</h2>
+                <label class="openvk-info-key">{="status"|l}: </label><input class="openvk-input-large" type="text" name="status" value="{$logged_user['status']}" /><br/>
+                <label class="openvk-info-key">{="aboutSelf"|l}: </label><textarea class="openvk-input-large" name="about">{$logged_user['info']}</textarea>
+                <hr/>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+        <section class="tab" data-name="ava">
+            <h2>Изображение профиля</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <label class="openvk-info-key">{="newProfilePhoto"|l}: </label><input type="file" accept="image/*" name="ava" />
+                <hr/>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+        <section class="tab" data-name="security">
+            <h2>Безопасность</h2>
+            <form method="POST">
+                <label class="openvk-info-key">{="oldPassword"|l}: </label><input type="password" class="openvk-input-large" name="password" /><br/>
+                <label class="openvk-info-key">{="newPassword"|l}: </label><input type="password" class="openvk-input-large" name="new_password" /><br/>
+                <hr/>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+    </section>
+{/block}

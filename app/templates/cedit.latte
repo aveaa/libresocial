@@ -1,0 +1,57 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+    {if $club !== 'new'}
+        {="groupSettings"|l} {$club->getAttributes()['name']}
+    {else}
+        {="info"|l}
+    {/if}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <a href="#basics" data-tab="basics" class="tab-link">{="info"|l}</a>
+        {if $club !== "new"}
+            <hr/>
+            <a href="#design" data-tab="decoration" class="tab-link">{="style"|l}</a>
+            <hr/>
+            <a href="#access" data-tab="access" class="tab-link">{="access"|l}</a>
+        {/if}
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container center">
+        <section class="tab" data-name="basics">
+            <form method="POST">
+                <h2>{="general"|l}</h2>
+                <label class="openvk-info-key">{="entityName"|l}: </label>
+                <input class="openvk-input-large" type="text" name="name" value="{$club !== 'new' ? $club->getAttributes()['name']}" /><br/>
+                <label class="openvk-info-key">{="status"|l}: </label>
+                <input class="openvk-input-large" type="text" name="status" value="{$club !== 'new' ? $club->getAttributes()['status']}" /><br/>
+                <label class="openvk-info-key">{="description"|l}: </label>
+                <textarea class="openvk-input-large" name="about">{$club !== 'new' ? $club->getAttributes()['info']}</textarea><br/>
+                <hr/>
+                <p>{="groupId"|l} — {$club !== 'new' ? $club->getAttributes()['id'] : 'unassigned'}<strong></strong></p>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+        <section class="tab" data-name="decoration">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>{="design"|l}</h2>
+                <label class="openvk-info-key">{="newGroupProfilePhoto"|l}: </label><input type="file" accept="image/*" name="ava" />
+                <hr/>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+        <section class="tab" data-name="access">
+            <form method="POST">
+                <h2>{="accesSecurity"|l}</h2>
+                <label>{="openAccess"|l}:</label> <input type="checkbox" name="_mxzrPrPragma_0" checked /><br/>
+                <label>{="openWall"|l}:</label> <input type="checkbox" name="_mxzrPrPragma_1" checked /><br/>
+                <hr/>
+                <button class="openvk-button">{="save"|l}</button>
+            </form>
+        </section>
+    </section>
+{/block}

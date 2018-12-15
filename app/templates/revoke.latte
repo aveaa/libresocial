@@ -1,0 +1,24 @@
+{layout 'two-columns-reverse.latte'}
+
+{block title}
+  {="revokeToken"|l}
+{/block}
+
+{block first-col}
+    <section class="container">
+        <strong>{="revokationOfToken"|l}</strong> - процедура удаление вашего токена и ip-адреса из нашей БД.
+    </section>
+{/block}
+
+{block second-col}
+    <section class="container">
+        <h1>Внимание!</h1>
+        <p>
+            <strong>{="unexpectedBadThings"|l}</strong> {="mayHappenIfNotRed"|l}<br/>
+            {="afterTokenRevokation"|l}, {$logged_user['first_name']}!<br/>
+            {="appTokenRevokation"|l}
+            <hr/>
+            <a class="openvk-button" href="?confirm=true">{="continue"|l}</a>
+        </p>
+    </section>
+{/block}
