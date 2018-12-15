@@ -41,8 +41,10 @@ class ClubController extends Controller
                 $error->error(404, "Not Found", "Группа не найдена");
             }
         } else if($_GET["act"] === "new") {
+            $id   = Club::count();
+            $id   = $id < 1 ? -1 : -($id + 1);
             $club = new Club;
-            $club->id        = -(Club::count() + 1);
+            $club->id        = $id;
             $club->owner     = Auth::getUser()["id"];
             $club->about     = json_encode([]);
             $club->coadmins  = json_encode([]);
