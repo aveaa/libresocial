@@ -2,6 +2,7 @@ LibreSocial hasn't got an installation script now. So you should do installation
 
 # Checking your environment 
 Please make sure that your environment meets following system requirements:
+
 |Hardware|Minimal         |Recommended        |
 |--------|----------------|-------------------|
 |CPU     |1.4GHz          |2.2GHz (64-bit)    |
@@ -50,6 +51,7 @@ MySQL8 introduces new auth algorithm, which is not supported by PDO, thus, you *
 
 ## Creating first user
 Create your first user, you may use the following cheatsheet:
+
 |Key          |Default value|Recommended value    |Example       |
 |-------------|-------------|---------------------|--------------|
 |id           |None         |1                    |1             |
