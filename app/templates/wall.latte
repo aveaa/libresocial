@@ -1,7 +1,7 @@
 <section class="container flex-row">
    {ifset $logged_user}
         <a href="/id0" class="col-1">
-            <img src="/{Unionity\OpenVK4\Middlewares\Auth::getUser(true)->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-mini" />
+            <img src="/{$obj_logged_user->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-mini" />
         </a>
         <form action="/feed" method="POST" class="openvk-post-form flex-column col-9">
             <section class="flex-row">

@@ -119,6 +119,11 @@ nav a:hover {
     text-decoration: none;
 }
 
+nav a > .fas, nav a > .far {
+    width: 22px;
+    text-align: center;
+}
+
 #main {
     margin-left: 4%;
     width: 80%;

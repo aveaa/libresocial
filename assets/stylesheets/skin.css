@@ -1,5 +1,5 @@
 :root {
-    --lsc-bg: #222222;
+    --lsc-bg: #222426;
     --lsc-main-color: #333336;
     --lsc-color-lighter: #464646;
     --lsc-color-darker: #242424;
@@ -13,8 +13,12 @@
     --lsc-x-margin: 200px;
 }
 
+header {
+    background-color: #333336!important;
+}
+
 .container {
-    background-color: #292929;
+    background-color: #28282a;
 }
 
 .openvk-post-field, .openvk-input-large {
@@ -24,4 +28,8 @@
 
 nav a:hover {
     background-color: #333336!important;
+}
+
+.openvk-ava {
+    max-width: 206px!important;
 }

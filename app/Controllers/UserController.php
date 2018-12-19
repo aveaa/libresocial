@@ -18,7 +18,7 @@ class UserController extends Controller
             exit(header("Location: /id".Auth::getUser()["id"]));
         }
         try {
-            $view = new UserView(User::findOrFail($user), Post::where("target", $user)->orderBy("date", "DESC")->cursor());
+            $view = new UserView(User::findOrFail($user), Post::where("target", $user)->orderBy("date", "DESC")->get());
             $view->render();
         } catch(ModelNotFoundException $ex) {
             $error = new ErrorController;

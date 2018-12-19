@@ -39,17 +39,19 @@
     {/ifset}
     {ifset $post->comments}
         <section class="openvk-post--comments">
-            <section class="flex-row openvk-comment-form hide">
-                <a href="/id{$logged_user['id']}" class="col-1">
-                    <img src="/{Unionity\OpenVK4\Middlewares\Auth::getUser(true)->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-nano">
-                </a>
-                <form action="/comments/{$post->id}" method="POST" class="openvk-post-form flex-row col-9">
-                    <textarea class="openvk-post-field col-1" name="post" placeholder="{='writeComment'|l}..."></textarea>
-                    <button class="openvk-button">
-                        <i class="fas fa-pen-fancy"></i>
-                    </button>
-                </form>
-            </section>
+            {ifset $logged_user}
+                <section class="flex-row openvk-comment-form hide">
+                    <a href="/id{$logged_user['id']}" class="col-1">
+                        <img src="/{$obj_logged_user->avatar->getAttributes()['filename_min']}" alt="{$logged_user['first_name']}" class="openvk-ava-nano">
+                    </a>
+                    <form action="/comments/{$post->id}" method="POST" class="openvk-post-form flex-row col-9">
+                        <textarea class="openvk-post-field col-1" name="post" placeholder="{='writeComment'|l}..."></textarea>
+                        <button class="openvk-button">
+                            <i class="fas fa-pen-fancy"></i>
+                        </button>
+                    </form>
+                </section>
+            {/ifset}
             <section n:foreach="$post->comments->all() as $comment" class="openvk-comment">
                 <section class="openvk-post--author flex-row">
                     <img

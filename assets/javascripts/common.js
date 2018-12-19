@@ -28,6 +28,7 @@ let likeProxy = lType => {
             $("i", $(this)).removeClass("far"); 
         }
         (abstractProxy("like", lType, id))();
+        return false;
     }
 };
 
@@ -39,6 +40,7 @@ let editProxy = eType => {
         if(newContent == null) return;
         (abstractProxy("ed", eType, id, `post=${encodeURI(newContent)}`))();
         contentNode.text(newContent);
+        return false;
     }
 };
 
@@ -47,12 +49,19 @@ let remProxy = eType => {
         if(!confirm("Вы действительно хотите удалить этот пост?")) return;
         (abstractProxy("rem", eType, $(this).parent().parent().data("i-pid")))();
         $(this).parent().parent().parent().remove();
+        return false;
     }
 };
 
 let openCommentForm = e => $(".openvk-comment-form", $(e.target).parent().parent().parent()).toggleClass("hide");
 
 function resetListeners() {
+    $("a").click(loadView);
+    $("form").submit(sendForm);
+    
+    $(".tab").hide();
+    $(".tab").first().show();
+    
     $(".tab-link").click(e => {
         let tab = $(e.target).attr("data-tab"); //lul
         $(".tab").hide();
@@ -78,14 +87,8 @@ function resetListeners() {
         cForm.toggleClass("hide");
         cInput.val(`${link.attr("href").replace("/", "*")} (${name}), `);
         cInput.focus();
+        return false;
     });
-
-    $("a").click(loadView);
-    console.log($("form"));
-    $("form").submit(sendForm);
-    
-    $(".tab").hide();
-    $(".tab").first().show();
 }
 
 async function updateView(url) {
@@ -118,13 +121,15 @@ async function updateView(url) {
 let reloadView = () => updateView(window.thisViewURL);
 
 function loadView() {
-    if($(this).hasClass("no-ajax")) return;
+    if($(this).hasClass("no-ajax") || /^\#/.test($(this).attr("href"))) return;
     let url = $(this).attr("href");
     updateView(url).then(() => {
         if(!$(this).hasClass("no-autoscroll")) window.scrollTo({top:0,behavior:"smooth"});
     });
     return false;
 }
+
+window.onpopstate = () => void updateView(window.location.href.replace(window.location.origin, ""));
 
 function sendForm(event) {
     if($(this).hasClass("noajaxy-form")) return;
@@ -142,15 +147,5 @@ function sendForm(event) {
 }
 
 resetListeners();
-
-new Konami(() => {
-    $(document.body).css({
-      transform: "rotate3d(-4, 10, 5, 44deg)",
-      filter: "invert(100%)",
-      transition: "1.5s all"
-    });
-    $(".logo h1").text("Либрососание");
-    $("nav a").text("Весеdлкрафт пидорасик");
-});
 
 })();
