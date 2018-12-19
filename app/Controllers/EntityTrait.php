@@ -32,6 +32,10 @@ trait EntityTrait
             $filename = $filename[sizeof($filename)];
             if(!is_dir($dirname)) mkdir($dirname);
             $image    = new \Gmagick($blob->getDest());
+            if($image->getimageheight() < 256 || $image->getimagewidth() < 256) {
+                header("HTTP/1.1 307 Temporary Redirect");
+                exit(header("Location: ".$_SERVER["HTTP_REFERER"]));
+            }
             $image->cropimage(...$this->getCoordinates($image));
             $image->thumbnailimage(768, 0);
             $image->write("$dirname/2b0ba183cd6e6085989a6795998552d3.jpeg");

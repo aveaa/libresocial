@@ -83,6 +83,10 @@ a.openvk-button, a.openvk-button:hover, a.openvk-button:active {color:#fff;}
 .user-head--bot::after {content: "bot";}
 .user-head--sysent::after {content: "sys";}
 
+.openvk-sgroup {
+    margin: 2pt;
+}
+
 .openvk-friend {
     display: inline-block;
     max-width: 32%;

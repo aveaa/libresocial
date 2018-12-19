@@ -55,12 +55,15 @@
     <section class="container">
         <h3 class="no-margin normal-heading">{="groups"|l}</h3>
         {foreach $user->groups as $group}
-            <section class="openvk-friend flex-column center">
+            <section class="openvk-sgroup flex-row">
                 <img class="openvk-ava-mini" src="/{$group->avatar->getAttributes()['filename_min']}"
                     alt="{='photo'|l} {$group->getAttributes()['name']}" />
-                <a href="/public{abs($group->getAttributes()['id'])}">
-                    <strong>{$group->getAttributes()['name']|truncate:17}</strong>
-                </a>
+                <section class="openvk-sgroup--info flex-column">
+                    <a href="/public{abs($group->getAttributes()['id'])}">
+                        <strong>{$group->getAttributes()['name']|truncate:17}</strong>
+                    </a>
+                    <span>{$group->getAttributes()['info']|truncate:17}</span>
+                </section>
             </section>
         {/foreach}
     </section>
