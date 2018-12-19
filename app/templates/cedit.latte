@@ -25,13 +25,20 @@
         <section class="tab" data-name="basics">
             <form method="POST">
                 <h2>{="general"|l}</h2>
-                <label class="openvk-info-key">{="entityName"|l}: </label>
-                <input class="openvk-input-large" type="text" name="name" value="{$club !== 'new' ? $club->getAttributes()['name']}" /><br/>
-                <label class="openvk-info-key">{="status"|l}: </label>
-                <input class="openvk-input-large" type="text" name="status" value="{$club !== 'new' ? $club->getAttributes()['status']}" /><br/>
-                <label class="openvk-info-key">{="description"|l}: </label>
-                <textarea class="openvk-input-large" name="about">{$club !== 'new' ? $club->getAttributes()['info']}</textarea><br/>
-                <hr/>
+                <table class="openvk-settings-table">
+                    <tr>
+                        <td><label class="openvk-info-key">{="entityName"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="name" value="{$club !== 'new' ? $club->getAttributes()['name']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="status"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="status" value="{$club !== 'new' ? $club->getAttributes()['status']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="description"|l}: </label></td>
+                        <td><textarea class="openvk-input-large" name="about">{$club !== 'new' ? $club->getAttributes()['info']}</textarea></td>
+                    </tr>
+                </table>
                 <p>{="groupId"|l} — {$club !== 'new' ? $club->getAttributes()['id'] : 'unassigned'}<strong></strong></p>
                 <button class="openvk-button">{="save"|l}</button>
             </form>
@@ -48,8 +55,16 @@
         <section class="tab" data-name="access">
             <form method="POST">
                 <h2>{="accesSecurity"|l}</h2>
-                <label>{="openAccess"|l}:</label> <input type="checkbox" name="_mxzrPrPragma_0" checked /><br/>
-                <label>{="openWall"|l}:</label> <input type="checkbox" name="_mxzrPrPragma_1" checked /><br/>
+                <table class="openvk-settings-table">
+                    <tr>
+                        <td><label>{="openAccess"|l}:</label></td>
+                        <td><input type="checkbox" name="_mxzrPrPragma_0" checked /</td>
+                    </tr>
+                    <tr>
+                        <td><label>{="openWall"|l}:</label></td>
+                        <td><input type="checkbox" name="_mxzrPrPragma_0" checked /></td>
+                    </tr>
+                </table>
                 <hr/>
                 <button class="openvk-button">{="save"|l}</button>
             </form>

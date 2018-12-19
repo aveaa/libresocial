@@ -149,3 +149,12 @@ a.openvk-button, a.openvk-button:hover, a.openvk-button:active {color:#fff;}
     margin: 10px;
     border-bottom: 1px solid var(--lsc-color-lighter);
 }
+
+.openvk-settings-table {
+    margin: auto;
+}
+
+.openvk-settings-table td {
+    text-align: start;
+    vertical-align: top;
+}

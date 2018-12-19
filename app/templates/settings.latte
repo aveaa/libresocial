@@ -19,13 +19,31 @@
         <section class="tab" data-name="basics">
             <form method="POST">
                 <h2>{="general"|l}</h2>
-                <label class="openvk-info-key">{="name"|l}: </label><input class="openvk-input-large" type="text" name="fn" value="{$logged_user['first_name']}" /><br/>
-                <label class="openvk-info-key">{="last_name"|l}: </label><input class="openvk-input-large" type="text" name="ln" value="{$logged_user['last_name']}" /><br/>
-                <label class="openvk-info-key">{="pseudo"|l}: </label><input class="openvk-input-large" type="text" name="pseudo" value="{$logged_user['pseudo']}" />
+                <table class="openvk-settings-table">
+                    <tr>
+                        <td><label class="openvk-info-key">{="name"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="fn" value="{$logged_user['first_name']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="last_name"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="ln" value="{$logged_user['last_name']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="pseudo"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="pseudo" value="{$logged_user['pseudo']}" /></td>
+                    </tr>
+                </table>
                 <h2>Информация обо мне</h2>
-                <label class="openvk-info-key">{="status"|l}: </label><input class="openvk-input-large" type="text" name="status" value="{$logged_user['status']}" /><br/>
-                <label class="openvk-info-key">{="aboutSelf"|l}: </label><textarea class="openvk-input-large" name="about">{$logged_user['info']}</textarea>
-                <hr/>
+                <table class="openvk-settings-table">
+                    <tr>
+                        <td><label class="openvk-info-key">{="status"|l}: </label></td>
+                        <td><input class="openvk-input-large" type="text" name="status" value="{$logged_user['status']}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="aboutSelf"|l}: </label></td>
+                        <td><textarea class="openvk-input-large" name="about">{$logged_user['info']}</textarea></td>
+                    </tr>
+                </table>
                 <button class="openvk-button">{="save"|l}</button>
             </form>
         </section>
@@ -41,9 +59,16 @@
         <section class="tab" data-name="security">
             <h2>Безопасность</h2>
             <form method="POST">
-                <label class="openvk-info-key">{="oldPassword"|l}: </label><input type="password" class="openvk-input-large" name="password" /><br/>
-                <label class="openvk-info-key">{="newPassword"|l}: </label><input type="password" class="openvk-input-large" name="new_password" /><br/>
-                <hr/>
+                <table class="openvk-settings-table">
+                    <tr>
+                        <td><label class="openvk-info-key">{="oldPassword"|l}: </label></td>
+                        <td><input type="password" class="openvk-input-large" name="password" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="openvk-info-key">{="newPassword"|l}: </label></td>
+                        <td><input type="password" class="openvk-input-large" name="new_password" /></td>
+                    </tr>
+                </table>
                 <button class="openvk-button">{="save"|l}</button>
             </form>
         </section>
