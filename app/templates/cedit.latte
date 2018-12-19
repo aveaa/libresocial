@@ -40,6 +40,7 @@
             <form method="POST" enctype="multipart/form-data">
                 <h2>{="design"|l}</h2>
                 <label class="openvk-info-key">{="newGroupProfilePhoto"|l}: </label><input type="file" accept="image/*" name="ava" />
+                {include "avcrop.latte"}
                 <hr/>
                 <button class="openvk-button">{="save"|l}</button>
             </form>
@@ -54,4 +55,9 @@
             </form>
         </section>
     </section>
+{/block}
+
+{block js}
+     <script src="/assets/javascripts/cropperjs/dist/cropper.min.js"></script>
+     <link   rel="stylesheet" href="/assets/javascripts/cropperjs/dist/cropper.min.css" />
 {/block}

@@ -1,3 +1,4 @@
 vendor
-assets/javascripts/zepto
-cache/templates
+assets/javascripts/*
+!assets/javascripts/common.js
+cache/templates/*

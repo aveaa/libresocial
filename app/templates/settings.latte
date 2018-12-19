@@ -33,6 +33,7 @@
             <h2>Изображение профиля</h2>
             <form method="POST" enctype="multipart/form-data">
                 <label class="openvk-info-key">{="newProfilePhoto"|l}: </label><input type="file" accept="image/*" name="ava" />
+                {include "avcrop.latte"}
                 <hr/>
                 <button class="openvk-button">{="save"|l}</button>
             </form>
@@ -47,4 +48,9 @@
             </form>
         </section>
     </section>
+{/block}
+
+{block js}
+     <script src="/assets/javascripts/cropperjs/dist/cropper.min.js"></script>
+     <link   rel="stylesheet" href="/assets/javascripts/cropperjs/dist/cropper.min.css" />
 {/block}

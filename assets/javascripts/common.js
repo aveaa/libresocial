@@ -1,4 +1,33 @@
 "use strict";
+window._tmp = {};
+const cropOpts = {
+    aspectRatio: 1,
+    crop(e) {
+        $("#openvk-avedit > input[name=crop_x]").val(Math.round(e.detail.x));
+        $("#openvk-avedit > input[name=crop_y]").val(Math.round(e.detail.y));
+        $("#openvk-avedit > input[name=crop_w]").val(Math.round(e.detail.width));
+        $("#openvk-avedit > input[name=crop_h]").val(Math.round(e.detail.height));
+    }
+};
+
+window.resetSyncListeners = () => {
+    $("#openvk-avedit").hide();
+    let frAv = new FileReader();
+    frAv.onload = () => {
+        let image = $("#openvk-avatar-editScope");
+        image.attr("src", frAv.result);
+        if(typeof window._tmp.cropper !== "undefined") window._tmp.cropper.destroy();
+        window._tmp.cropper = new Cropper(image.get(0), cropOpts);
+        $("#openvk-avedit").show();
+    }
+
+    $("input[name=ava]").bind("change", e => {
+        let input = e.target;
+        let file  = input.files[0];
+        if(typeof file == "undefined") return;
+        frAv.readAsDataURL(file);
+    });
+};
 (async function() {
 
 let normalizeString = string => string.replace(/[ ]{2,}|\n/gm, "");
@@ -89,6 +118,8 @@ function resetListeners() {
         cInput.focus();
         return false;
     });
+    
+    window.resetSyncListeners();
 }
 
 async function updateView(url) {
@@ -107,6 +138,7 @@ async function updateView(url) {
                 $("main").html(doc.body.innerHTML);
                 window.thisViewURL = url;
                 resetListeners();
+                window._tmp = {};
                 return true;
             } else if(xhr.status >= 400) {
                 console.error(`An error occured: ${xhr.responseText}`);
