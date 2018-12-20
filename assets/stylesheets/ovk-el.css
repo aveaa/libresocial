@@ -87,6 +87,10 @@ a.openvk-button, a.openvk-button:hover, a.openvk-button:active {color:#fff;}
     margin: 2pt;
 }
 
+.openvk-sgroup section {
+    margin-left: 5px;
+}
+
 .openvk-friend {
     display: inline-block;
     max-width: 32%;
@@ -152,6 +156,14 @@ a.openvk-button, a.openvk-button:hover, a.openvk-button:active {color:#fff;}
 .openvk-comment {
     margin: 10px;
     border-bottom: 1px solid var(--lsc-color-lighter);
+}
+
+.openvk-group-card, .openvk-friend-card {
+    margin: 5px;
+}
+
+.openvk-group-card section, .openvk-friend-card section {
+    margin-left: 5px;
 }
 
 .openvk-settings-table {

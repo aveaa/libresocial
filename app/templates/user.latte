@@ -6,7 +6,7 @@
 
 {block first-col}
     <section class="container">
-        <img class="openvk-ava" src="/{$user->avatar->getAttributes()['filename']}" alt="{='userPhoto'|l} {$user['first_name']}" />
+        <img class="openvk-ava" src="/{$user->avatar->getAttributes()['filename_optimized']}" alt="{='userPhoto'|l} {$user['first_name']}" />
         <hr/>
         <section class="center flex-column">
         {ifset $logged_user}
@@ -16,19 +16,19 @@
                         <strong>{$user->getAttributes()['first_name']}</strong> {="yourFriend"|l}.
                     </p>
                     <a href="/im" class="openvk-button">{="sendMessage"|l}</a>
-                    <a href="/unsub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post">{="removeFriend"|l}</a>
+                    <a href="/unsub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="removeFriend"|l}</a>
                 {elseif in_array($user->getAttributes()['id'], $obj_logged_user->rawfollowers)}
                     <p class="gray-text">
                         <strong>{$user->getAttributes()['first_name']}</strong> {="yourFollower"|l}.
                     </p>
-                    <a href="/sub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post">{="acceptFrRq"|l}</a>
+                    <a href="/sub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="acceptFrRq"|l}</a>
                 {elseif in_array($logged_user["id"], $user->rawfollowers)}
                     <p class="gray-text">
                         {="sentFrRq"|l} <strong>{$user->getAttributes()['first_name']}</strong>.
                     </p>
-                    <a href="/unsub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post">{="cancelFrRq"|l}</a>
+                    <a href="/unsub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="cancelFrRq"|l}</a>
                 {else}
-                    <a href="/sub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post">{="addFriend"|l}</a>
+                    <a href="/sub/{$user->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="addFriend"|l}</a>
                 {/if}
             {else}
                 <a href="/settings" class="openvk-button">{="editPage"|l}</a>

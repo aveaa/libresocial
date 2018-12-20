@@ -6,16 +6,16 @@
 
 {block first-col}
     <section class="container">
-        <img class="openvk-ava" src="/{$club->avatar->getAttributes()['filename']}" alt="{='clubPhoto'|l} {$club->getAttributes()['name']}" />
+        <img class="openvk-ava" src="/{$club->avatar->getAttributes()['filename_optimized']}" alt="{='clubPhoto'|l} {$club->getAttributes()['name']}" />
         <hr/>
         <section class="center flex-column">
         {ifset $logged_user}
             {if $logged_user["id"] == $club->getAttributes()["owner"]}
                 <a href="/gedit?id={abs($club->getAttributes()['id'])}" class="openvk-button">{="groupSettings"|l}</a>
             {elseif in_array($logged_user["id"], $club->rawfollowers)}
-                <a href="/unsub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post">{="unsub"|l}</a>
+                <a href="/unsub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="unsub"|l}</a>
             {else}
-                <a href="/sub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post">{="join"|l}</a>
+                <a href="/sub/{$club->getAttributes()['id']}/" class="openvk-button ajax-post ajax-reload">{="join"|l}</a>
             {/if}
         {else}
             <p class="gray-text">

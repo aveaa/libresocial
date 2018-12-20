@@ -24,7 +24,12 @@ trait EntityTrait
 
     private function setAvatar($entity)
     {
-        $blob = new Blob($_FILES["ava"]);
+        try {
+            $blob = new Blob($_FILES["ava"]);
+        } catch(\Exception $e) {
+            exit($this->redirect($_SERVER["HTTP_REFERER"]."&f=2", 3));
+        }
+        
         $blob->mv()->verify(function($j){return true;})->onVerified(function($blob) use ($entity) {
             $filename = explode(".", $blob->getDest())[0];
             $dirname  = "$filename.d";
@@ -33,18 +38,19 @@ trait EntityTrait
             if(!is_dir($dirname)) mkdir($dirname);
             $image    = new \Gmagick($blob->getDest());
             if($image->getimageheight() < 256 || $image->getimagewidth() < 256) {
-                header("HTTP/1.1 307 Temporary Redirect");
-                exit(header("Location: ".$_SERVER["HTTP_REFERER"]));
+                exit($this->redirect($_SERVER["HTTP_REFERER"]."&f=1", 3));
             }
-            $image->cropimage(...$this->getCoordinates($image));
             $image->thumbnailimage(768, 0);
-            $image->write("$dirname/2b0ba183cd6e6085989a6795998552d3.jpeg");
+            $image->write("$dirname/2b0ba183cd6e6085989a6795998552d3.webp");
+            $image->clear();
+            $image = new \Gmagick($blob->getDest());
+            $image->cropimage(...$this->getCoordinates($image));            
             $image->thumbnailimage(128, 128);
             $image->write("$dirname/803456eac15335fa58004fa7fa1ffb3c.jpeg");
 
             Avatar::updateOrCreate(["owner" => $entity["id"]], [
                 "filename" => $blob->getDest(),
-                "filename_optimized" => "$dirname/2b0ba183cd6e6085989a6795998552d3.jpeg",
+                "filename_optimized" => "$dirname/2b0ba183cd6e6085989a6795998552d3.webp",
                 "filename_min" => "$dirname/803456eac15335fa58004fa7fa1ffb3c.jpeg",
             ]);
         });

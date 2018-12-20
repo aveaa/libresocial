@@ -1,4 +1,5 @@
 "use strict";
+window.thisViewURL = window.location.href.replace(window.location.origin, "");
 window._tmp = {};
 const cropOpts = {
     aspectRatio: 1,
@@ -122,14 +123,15 @@ function resetListeners() {
     window.resetSyncListeners();
 }
 
-async function updateView(url) {
+async function updateView(url, post = false, forceReolad = false) {
     if(/(^([A-z]+):\/\/)|^#(.*)/.test(url)) return window.location.assign(url);
     let xhr = new XMLHttpRequest();
-    xhr.open($(this).hasClass("ajax-post") ? "POST" : "GET", url, true);
+    xhr.open(post ? "POST" : "GET", url, true);
     xhr.setRequestHeader("X-Mxzr-Particle", "expect");
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4) {
             if(xhr.status >= 200 && xhr.status <= 204) {
+                if(forceReolad) return reloadView(); //skip parsing, if result will be reset anyway.
                 let doc = new DOMParser().parseFromString(xhr.responseText, "text/html");
                 let title = doc.querySelector("title").innerText;
                 doc.querySelector("title").remove();
@@ -155,7 +157,7 @@ let reloadView = () => updateView(window.thisViewURL);
 function loadView() {
     if($(this).hasClass("no-ajax") || /^\#/.test($(this).attr("href"))) return;
     let url = $(this).attr("href");
-    updateView(url).then(() => {
+    updateView(url, $(this).hasClass("ajax-post"), $(this).hasClass("ajax-reload")).then(() => {
         if(!$(this).hasClass("no-autoscroll")) window.scrollTo({top:0,behavior:"smooth"});
     });
     return false;
