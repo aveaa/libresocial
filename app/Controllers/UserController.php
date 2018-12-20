@@ -61,12 +61,15 @@ class UserController extends Controller
         
         $user = User::find(Auth::getUser()["id"]);
         if(isset($_POST["password"])) {
-            $hash = hash("whirlpool", $_POST["new_password"]);
-            if(hash_equals( $user["password_hash"], hash("whirlpool", $_POST["password"]) )) {
-                $user->password_hash = $hash;
+            $salt         = openssl_random_pseudo_bytes(10, $strong);
+            $salt         = base64_encode($salt);
+            $new_password = hash("whirlpool", $_POST["new_password"].$salt)."\$$salt";
+            $hash         = explode("$", $user["password_hash"]);
+            if(hash_equals( $hash[0], hash("whirlpool", $_POST["password"].$hash[1]) )) {
+                $user->password_hash = $new_password;
                 $user->save();
             } else {
-                //TODO: Bad password
+                exit($this->redirect("?f=1", 3));
             }
         } else if(isset($_FILES["ava"])) {
             $this->setAvatar($user);
