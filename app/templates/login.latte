@@ -2,6 +2,13 @@
 
 {block content}
     <section class="container">
+        {ifset $_GET['f']}
+            {if $_GET['f'] == 1}
+                {include 'error-message.latte', type => "warning", title => "Пользователь не найден", description => "Проверьте, не опечатались ли вы в логине"}
+            {elseif $_GET['f'] == 2}
+                {include 'error-message.latte', type => "error", title => "Неправильный пароль", description => "Повторите попытку..."}
+            {/if}
+        {/ifset}
         <center>
             <h1>{="loginVerb"|l}</h1>
             <form method="POST" action="/login" class="flex-column">

@@ -69,7 +69,7 @@ class UserController extends Controller
                 $user->password_hash = $new_password;
                 $user->save();
             } else {
-                exit($this->redirect("?f=1", 3));
+                exit($this->redirect("?f=100", 3));
             }
         } else if(isset($_FILES["ava"])) {
             $this->setAvatar($user);

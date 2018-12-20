@@ -1,3 +1,41 @@
+.openvk-exclamination {
+    padding: 5pt;
+}
+
+.openvk-exclamination > strong {
+    font-size: xx-large;
+    margin-left: 9px;
+    margin-right: 10px;
+}
+
+.openvk-exclamination p {
+    text-align: justify;
+}
+
+.openvk-error-message {
+    background-color: #ffbfcb;
+    border: 1.5px solid darkred;
+    color: #ce0013;
+}
+
+.openvk-warning-message {
+    background-color: #ffd994;
+    border: 1.5px solid #ff5e00;
+    color: #ff5e00;
+}
+
+.openvk-notice-message {
+    background-color: #d5d6ff;
+    border: 1.5px solid #00059e;
+    color: #714dff;
+}
+
+.openvk-success-message {
+    background-color: #dbffd5;
+    border: 1.5px solid #1b6d00;
+    color: #099400;
+}
+
 .openvk-ava {
     max-width: 245px;
 }

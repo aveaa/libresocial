@@ -16,6 +16,15 @@
 
 {block second-col}
     <section class="container center">
+        {ifset $_GET['f']}
+            {if $_GET['f'] == 1}
+                {include 'error-message.latte', type => "error", title => "Некорректный размер изображения", description => "Попробуйте загрузить фото размером больше 256 пикс"}
+            {elseif $_GET['f'] == 2}
+                {include 'error-message.latte', type => "error", title => "Неподдерживаемый формат", description => "Поддерживаются только PNG, JPEG и WebP"}
+            {elseif $_GET['f'] == 100}
+                {include 'error-message.latte', type => "error", title => "Неверный пароль", description => "Повторите попытку ещё раз..."}
+            {/if}
+        {/ifset}
         <section class="tab" data-name="basics">
             <form method="POST">
                 <h2>{="general"|l}</h2>
